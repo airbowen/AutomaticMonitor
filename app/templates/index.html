@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 加载echart -->
+  <!-- 加载vue -->
+  <script src="/static/vue-2.7.js"></script>
+  <script src="/static/echarts.min.js"></script>
+  <script src="/static/index.js" defer></script>
+  <title>数据分布可视化</title>
+</head>
+<body>
+  <div class="container" id="app">
+    <div class="btns">
+      <div :class="['btn', {'active': len == 5}]" @click="getData(5)">5min</div>
+      <div :class="['btn', {'active': len == 15}]" @click="getData(15)">15min</div>
+      <div :class="['btn', {'active': len == 30}]" @click="getData(30)">30min</div>
+      <div :class="['btn', {'active': len == 60}]" @click="getData(60)">60min</div>
+    </div>
+    <div class="tip" v-show="loading">计算统计中...</div>
+    <canvas id="chart" v-show="!loading"></canvas>
+  </div>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #f5f5f5;
+    }
+    .container {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .btns {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .btn {
+      width: 100px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin: 0 10px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: #ccc;
+    }
+    .btn.active {
+      background: #ccc;
+    }
+    #chart {
+      width: 1000px;
+      height: 500px;
+    }
+    .tip {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 1000px;
+      height: 500px;
+      font-size: 20px;
+      color: #ccc;
+    }
+  </style>
+</body>
+</html>
